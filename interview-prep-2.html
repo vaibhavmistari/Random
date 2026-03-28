@@ -120,6 +120,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 /* ===== BADGES ===== */
 .badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.15rem 0.55rem;border-radius:20px;
   font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;font-family:var(--mono);}
+.badge-emily{background:var(--rose-dim);color:var(--rose);}
 .badge-ryan{background:var(--amber-dim);color:var(--amber);}
 .badge-preethy{background:var(--success-dim);color:var(--success);}
 .badge-sandra{background:var(--purple-dim);color:var(--purple);}
@@ -260,6 +261,7 @@ tr:hover td{background:rgba(100,255,218,0.03);}
   </div>
 
   <div class="schedule">
+    <span class="sched-chip"><span class="dot" style="background:var(--rose)"></span> 03/31 1-1:30 PM · Emily Schubert</span>
     <span class="sched-chip"><span class="dot" style="background:var(--amber)"></span> 04/01 2-2:30 PM · Ryan Parrott</span>
     <span class="sched-chip"><span class="dot" style="background:var(--success)"></span> 04/02 12:30-1 PM · Preethy P.</span>
     <span class="sched-chip"><span class="dot" style="background:var(--purple)"></span> 04/02 1-1:30 PM · Sandra M.</span>
@@ -301,6 +303,7 @@ const FLASHCARDS = [
   { q:'Your $400K cost savings story — key points?', a:'Lean methodologies → rationalized fitting counts → standardized parts (SS/Al) → consolidated vendors → $400K savings + simplified manufacturing + reduced assembly errors.' },
   { q:'Your 8D investigation — key points?', a:'H₂ purity drop → 8D task force → JMP/SQL data analysis → isolated faulty drain filter → moisture degrading PSA adsorbent → corrective replacement → restored purity → prevented ~$200K scrap.' },
   { q:'Your DOE optimization — key points?', a:'Hydrogen purification → factorial DOE → characterized working capacity, breakthrough time, MTZ → response surface in JMP → +20% process margin → reduced operational variability.' },
+  { q:'Emily Schubert — what to emphasize?', a:'Lean/CI results ($400K savings), SPC implementation (100+ runs, 26% defect reduction), packaging/assembly optimization (MEKA snap-fits, DFM). She\'s held quality, materials, packaging, R&D roles — show versatility and quality-first mindset. First interview — set confident tone.' },
   { q:'Ryan Parrott — what to emphasize?', a:'Practical hands-on stories, $400K cost savings, safety compliance (OSHA/NFPA), pathfinding aptitude. He leads CAMD group — supports factory modules, tracks millions in savings.' },
   { q:'Preethy Parthasarathy — what to emphasize?', a:'Deep technical depth (DOE methodology, SPC, materials). She\'s a PhD content expert. Lead with 8D task force, cleanroom experience, intellectual rigor. Most technical interview.' },
   { q:'Sandra Majuta — what to emphasize?', a:'Research background (publication), bridge thermal/mechanical design to packaging, curiosity about EMIB/Foveros. She\'s PhD in packaging R&D. Lead with pathfinding mindset.' },
@@ -408,6 +411,18 @@ function markDone() {
 
 function render_interviewers(el) {
   el.innerHTML = `
+  <div class="card">
+    <div class="card-head"><h3><span class="badge badge-emily">03/31</span> Emily Schubert — Materials Engineer / R&D Design Engineer</h3></div>
+    <p><strong style="color:var(--text)">Background:</strong> Materials Engineer and R&D Design Engineer at Intel, Portland/Hillsboro area. BS in Engineering from Michigan State. Career at Intel spans Packaging Manufacturing Engineer, Quality Engineer, Materials Engineer, R&D Design Engineer, and Product Data Planning Manager. Previously interned at J&J as Packaging Engineer. Skills: Lean Manufacturing, SPC, Six Sigma, Cross-Functional Team Leadership, Process Improvement, Continuous Improvement.</p>
+    <h4>What She'll Likely Assess</h4>
+    <ul>
+      <li><strong>Materials and process fundamentals</strong> — Material selection, characterization, behavior under process conditions</li>
+      <li><strong>Quality and SPC rigor</strong> — Her quality engineer background values data-driven quality</li>
+      <li><strong>Lean and continuous improvement</strong> — Your $400K Lean story is directly relevant</li>
+      <li><strong>Cross-functional versatility</strong> — She's held roles across packaging, quality, materials, R&D, planning</li>
+    </ul>
+    <div class="tip"><strong>Strategy:</strong> This is your FIRST interview — set a confident tone. Emily's diverse Intel experience means she evaluates broadly. Lead with Lean/CI results and SPC. Your packaging/assembly optimization at MEKA (snap-fit, DFM) parallels her J&J and Intel packaging background. Show versatility and a quality-first mindset.</div>
+  </div>
   <div class="card">
     <div class="card-head"><h3><span class="badge badge-ryan">04/01</span> Ryan Parrott — CAMD Group Leader</h3></div>
     <p><strong style="color:var(--text)">Background:</strong> ~20 years at Intel. Leads Collaterals & Media Development group supporting factory modules for wafer-level assembly. Cal Poly SLO. Focuses on safety, factory output, cost savings, pathfinding for new technologies. Previously managed packaging engineering lab, NPI for 300mm wafer supply chain.</p>
@@ -728,7 +743,7 @@ function showClose(i,btn){
 function render_gameday(el) {
   const groups = [
     { title:'📦 Before Interview Day', items:[
-      'Review all 3 interviewer profiles and tailored strategies',
+      'Review all 4 interviewer profiles and tailored strategies',
       'Practice 30s, 60s, and 2min versions of all 3 stories out loud',
       'Memorize 5 Intel talking points (18A, Foundry, Packaging, 5N4Y, CHIPS)',
       'Review semiconductor fab fundamentals (CVD/PVD/ALD, etch, lithography)',
@@ -738,6 +753,15 @@ function render_gameday(el) {
       'Choose closing statement for each interviewer',
       'Draft thank-you email templates with [brackets]',
       'Test video/phone setup, quiet environment, professional background',
+    ]},
+    { title:'🔴 Day 0 — Emily Schubert (03/31, 1-1:30 PM)', items:[
+      'Set a confident first-impression tone — this is your opening interview',
+      'Lead with Lean/continuous improvement results ($400K savings)',
+      'Discuss SPC implementation (100+ runs, 26% defect reduction)',
+      'Bridge MEKA packaging/assembly optimization to her J&J and Intel packaging background',
+      'Show cross-functional versatility — she has held quality, materials, R&D, planning roles',
+      'Ask about materials challenges and team structure',
+      'Send thank-you email within 2-4 hours',
     ]},
     { title:'🟡 Day 1 — Ryan Parrott (04/01, 2-2:30 PM)', items:[
       'Lead with practical, hands-on engineering stories',
