@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micron Interview Prep - Vaibhav Mistari</title>
+<style>
+  :root {
+    --navy: #1B365D;
+    --blue: #2E5090;
+    --light-blue: #4A90D9;
+    --bg: #F5F7FA;
+    --white: #FFFFFF;
+    --gray: #6B7280;
+    --light-gray: #E5E7EB;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --red: #EF4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: #1F2937; line-height: 1.6; }
+  
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: white; padding: 2rem; text-align: center; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header p { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+  
+  .progress-bar-container {
+    background: rgba(255,255,255,0.15); border-radius: 10px; height: 12px;
+    margin: 1rem auto 0.5rem; max-width: 500px; overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%; background: linear-gradient(90deg, var(--green), #34D399);
+    border-radius: 10px; transition: width 0.5s ease; min-width: 2%;
+  }
+  .progress-text { font-size: 0.85rem; opacity: 0.9; }
+  
+  .nav {
+    background: white; border-bottom: 1px solid var(--light-gray); padding: 0.75rem 1rem;
+    display: flex; gap: 0.5rem; overflow-x: auto; position: sticky; top: 0; z-index: 99;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .nav-btn {
+    background: var(--bg); border: 1px solid var(--light-gray); border-radius: 8px;
+    padding: 0.5rem 1rem; font-size: 0.8rem; cursor: pointer; white-space: nowrap;
+    transition: all 0.2s; color: var(--gray); font-weight: 500;
+  }
+  .nav-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .nav-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+  .nav-btn.completed { background: #D1FAE5; color: #065F46; border-color: #6EE7B7; }
+  
+  .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+  
+  .section {
+    background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.06); border: 1px solid var(--light-gray);
+    display: none;
+  }
+  .section.active { display: block; }
+  .section h2 { color: var(--navy); font-size: 1.35rem; margin-bottom: 1rem; border-bottom: 2px solid var(--light-blue); padding-bottom: 0.5rem; }
+  .section h3 { color: var(--blue); font-size: 1.1rem; margin: 1.25rem 0 0.5rem; }
+  .section h4 { color: var(--navy); font-size: 1rem; margin: 1rem 0 0.4rem; font-weight: 600; }
+  
+  .card {
+    background: var(--bg); border-radius: 8px; padding: 1rem; margin: 0.75rem 0;
+    border-left: 4px solid var(--light-blue);
+  }
+  .card.green { border-left-color: var(--green); }
+  .card.amber { border-left-color: var(--amber); }
+  .card.red { border-left-color: var(--red); }
+  
+  .share-label {
+    display: inline-block; background: var(--navy); color: white; padding: 0.15rem 0.5rem;
+    border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-right: 0.4rem;
+  }
+  
+  table {
+    width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.9rem;
+  }
+  th { background: var(--navy); color: white; padding: 0.6rem 0.75rem; text-align: left; font-weight: 600; }
+  td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--light-gray); vertical-align: top; }
+  tr:nth-child(even) td { background: #F9FAFB; }
+  
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0;
+    border-bottom: 1px solid #F3F4F6; cursor: pointer; transition: background 0.2s;
+  }
+  .checklist-item:hover { background: #F9FAFB; }
+  .checklist-item input[type="checkbox"] {
+    width: 20px; height: 20px; accent-color: var(--green); margin-top: 2px; cursor: pointer; flex-shrink: 0;
+  }
+  .checklist-item label { cursor: pointer; flex: 1; }
+  .checklist-item.done label { text-decoration: line-through; color: var(--gray); }
+  
+  .interviewer-card {
+    background: linear-gradient(135deg, #F0F4FF 0%, #E8F0FE 100%);
+    border-radius: 10px; padding: 1.25rem; margin: 0.75rem 0;
+    border: 1px solid #C3D5F0;
+  }
+  .interviewer-card h4 { margin-top: 0; color: var(--navy); }
+  .interviewer-card .role { color: var(--blue); font-weight: 500; font-size: 0.9rem; }
+  .interviewer-card .detail { font-size: 0.88rem; color: #4B5563; margin-top: 0.5rem; }
+  .tag { display: inline-block; background: var(--navy); color: white; padding: 0.15rem 0.5rem; border-radius: 12px; font-size: 0.7rem; margin: 0.15rem; }
+  
+  .qa-toggle { cursor: pointer; user-select: none; }
+  .qa-toggle h4 { display: flex; align-items: center; gap: 0.5rem; }
+  .qa-toggle h4::before { content: '▶'; font-size: 0.7rem; transition: transform 0.2s; color: var(--blue); }
+  .qa-toggle.open h4::before { transform: rotate(90deg); }
+  .qa-answer { display: none; padding: 0.75rem; background: var(--bg); border-radius: 8px; margin-top: 0.4rem; font-size: 0.92rem; }
+  .qa-toggle.open .qa-answer { display: block; }
+  
+  .step-indicator {
+    display: flex; justify-content: center; gap: 0.25rem; margin: 1rem 0;
+  }
+  .step-dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--light-gray);
+    transition: background 0.3s;
+  }
+  .step-dot.active { background: var(--navy); }
+  .step-dot.done { background: var(--green); }
+  
+  .btn-row { display: flex; gap: 0.75rem; justify-content: center; margin-top: 1.5rem; }
+  .btn {
+    padding: 0.6rem 1.5rem; border-radius: 8px; border: none; cursor: pointer;
+    font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+  }
+  .btn-primary { background: var(--navy); color: white; }
+  .btn-primary:hover { background: var(--blue); }
+  .btn-secondary { background: var(--bg); color: var(--navy); border: 1px solid var(--light-gray); }
+  .btn-secondary:hover { background: var(--light-gray); }
+  .btn-success { background: var(--green); color: white; }
+  .btn-success:hover { background: #059669; }
+  
+  .timer { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-align: center; margin: 1rem 0; }
+  
+  @media (max-width: 768px) {
+    .header h1 { font-size: 1.2rem; }
+    .container { padding: 1rem; }
+    .section { padding: 1rem; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>MICRON INTERVIEW PREP</h1>
+  <p>Materials Planning Engineer \u2013 Front End US Expansion | JR90145</p>
+  <p style="font-size:0.85rem;margin-top:0.25rem;">\ud83d\udcc5 March 30, 2026 (3-4 PM) \u2022 Erik ReVeal</p>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="progress-text" id="progressText">0 of 12 steps completed</div>
+</div>
+
+<div class="nav" id="navBar"></div>
+
+<div class="container" id="content"></div>
+
+<script>
+const sections = [
+  { id: 'overview', title: '\ud83c\udfaf Overview', icon: '\ud83c\udfaf' },
+  { id: 'interviewers', title: '\ud83d\udc64 Interviewers', icon: '\ud83d\udc64' },
+  { id: 'share', title: '\ud83d\udcd6 SHARE Method', icon: '\ud83d\udcd6' },
+  { id: 'common5', title: '\u2753 Top 5 Questions', icon: '\u2753' },
+  { id: 'culture', title: '\ud83c\udf1f Values Fit', icon: '\ud83c\udf1f' },
+  { id: 'criteria', title: '\ud83d\udccb Eval Criteria', icon: '\ud83d\udccb' },
+  { id: 'behavioral', title: '\ud83e\udde0 Behavioral Qs', icon: '\ud83e\udde0' },
+  { id: 'technical', title: '\u2699\ufe0f Technical Prep', icon: '\u2699\ufe0f' },
+  { id: 'weakness', title: '\ud83d\udee1\ufe0f Weakness', icon: '\ud83d\udee1\ufe0f' },
+  { id: 'questions', title: '\ud83d\udca1 Ask Them', icon: '\ud83d\udca1' },
+  { id: 'closing', title: '\ud83c\udf99\ufe0f Closing', icon: '\ud83c\udf99\ufe0f' },
+  { id: 'thankyou', title: '\ud83d\udce7 Thank You', icon: '\ud83d\udce7' },
+];
+
+let completed = {};
+try { completed = JSON.parse(localStorage.getItem('micron_prep_progress') || '{}'); } catch(e) {}
+
+function saveProgress() {
+  try { localStorage.setItem('micron_prep_progress', JSON.stringify(completed)); } catch(e) {}
+  updateProgressBar();
+  renderNav();
+}
+
+function updateProgressBar() {
+  const total = sections.length;
+  const done = Object.keys(completed).length;
+  document.getElementById('progressBar').style.width = Math.round((done/total)*100) + '%';
+  document.getElementById('progressText').textContent = `${done} of ${total} steps completed`;
+}
+
+function renderNav() {
+  const nav = document.getElementById('navBar');
+  nav.innerHTML = sections.map(s => {
+    let cls = 'nav-btn';
+    if (s.id === currentSection) cls += ' active';
+    else if (completed[s.id]) cls += ' completed';
+    return `<button class="${cls}" onclick="showSection('${s.id}')">${s.title}</button>`;
+  }).join('');
+}
+
+let currentSection = 'overview';
+
+function showSection(id) {
+  currentSection = id;
+  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById('sec-' + id);
+  if (el) el.classList.add('active');
+  renderNav();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function markDone(id) {
+  completed[id] = true;
+  saveProgress();
+}
+
+function markUndone(id) {
+  delete completed[id];
+  saveProgress();
+}
+
+function toggleQA(el) {
+  el.classList.toggle('open');
+}
+
+function resetProgress() {
+  if(confirm('Reset all progress? This cannot be undone.')) {
+    completed = {};
+    saveProgress();
+    location.reload();
+  }
+}
+
+function buildContent() {
+  const container = document.getElementById('content');
+  container.innerHTML = `
+  <!-- OVERVIEW -->
+  <div class="section active" id="sec-overview">
+    <h2>\ud83c\udfaf Interview Overview & Preparation Checklist</h2>
+    <div class="card">
+      <strong>Role:</strong> Materials Planning Engineer \u2013 Front End US Expansion<br>
+      <strong>Company:</strong> Micron Technology | <strong>Location:</strong> Boise, ID<br>
+      <strong>Requisition:</strong> JR90145<br>
+      <strong>Interview:</strong> March 30, 2026, 3\u20134 PM with Erik ReVeal<br>
+      <strong>Potential Follow-up:</strong> Erik ReVeal & Jeff Binford
+    </div>
+    <h3>Pre-Interview Checklist</h3>
+    <div id="masterChecklist">
+      ${[
+        'Review interviewer profiles (Erik ReVeal & Jeff Binford)',
+        'Practice SHARE method framework out loud',
+        'Rehearse Top 5 common question answers (time each: 1\u20132 min)',
+        'Review Micron core values alignment table',
+        'Run through all 10 behavioral questions',
+        'Study 3 technical scenarios and your transferable experience',
+        'Prepare weakness answer (pick one version)',
+        'Memorize top 5 strategic questions to ask',
+        'Choose closing statement version',
+        'Draft thank-you email template with placeholders',
+        'Test your tech setup (video, audio, lighting, background)',
+        'Print or bookmark this guide for quick reference'
+      ].map((item, i) => `
+        <div class="checklist-item ${completed['check_'+i] ? 'done' : ''}" onclick="let cb=this.querySelector('input');cb.checked=!cb.checked;cb.onchange();">
+          <input type="checkbox" ${completed['check_'+i] ? 'checked' : ''} onchange="event.stopPropagation();if(this.checked){completed['check_'+i]=true;this.closest('.checklist-item').classList.add('done');}else{delete completed['check_'+i];this.closest('.checklist-item').classList.remove('done');}saveProgress();">
+          <label>${item}</label>
+        </div>
+      `).join('')}
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="showSection('interviewers')">Start Preparing \u2192</button>
+      <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
+    </div>
+  </div>
+
+  <!-- INTERVIEWERS -->
+  <div class="section" id="sec-interviewers">
+    <h2>\ud83d\udc64 Interviewer Intelligence</h2>
+    <div class="interviewer-card">
+      <h4>Erik ReVeal</h4>
+      <div class="role">Sr Manager, Capital and Materials Planning \u2013 Micron Technology</div>
+      <div class="detail">
+        <strong>Background:</strong> Previously Advanced Materials R&D Ops Manager at Oceanit. Manages 5 Manufacturing Integration Engineers + 2 Capital Coordinators. Owns Capital Planning for TD\u2019s ~$600M annual budget.<br><br>
+        <strong>Key Responsibilities:</strong> Monthly capital review, Tableau/Excel reporting (working-level to exec), data-driven executive reviews, Finance & Procurement partnership, SAP capital management deployment.<br><br>
+        <strong>What He\u2019ll Probe:</strong>
+        <div style="margin-top:0.25rem;">
+          <span class="tag">Analytical Skills</span>
+          <span class="tag">Cross-functional Collab</span>
+          <span class="tag">Data-driven Decisions</span>
+          <span class="tag">Cost Optimization</span>
+          <span class="tag">Planning Processes</span>
+          <span class="tag">Forecasting Comfort</span>
+        </div>
+        <br>
+        <strong>Your Approach:</strong> Lead with SQL/JMP data analysis, DOE optimization, Lean $400K savings, BOM work, and cross-functional collaboration stories.
+      </div>
+    </div>
+    <div class="interviewer-card">
+      <h4>Jeff Binford</h4>
+      <div class="role">Senior Director, US Expansion Planning \u2013 Micron Technology</div>
+      <div class="detail">
+        <strong>Background:</strong> 20+ years in planning, operations, and industrial engineering in semiconductor manufacturing. Started as IE in Micron\u2019s Boise factory, worked in Japan, Virginia, Utah, Singapore. Returned for CHIPS Act expansion.<br><br>
+        <strong>What He\u2019ll Probe:</strong>
+        <div style="margin-top:0.25rem;">
+          <span class="tag">Strategic Vision</span>
+          <span class="tag">Long-term Commitment</span>
+          <span class="tag">Semiconductor Understanding</span>
+          <span class="tag">Global Complexity</span>
+          <span class="tag">Leadership Potential</span>
+          <span class="tag">Expansion Mission Alignment</span>
+        </div>
+        <br>
+        <strong>Your Approach:</strong> Show passion for semiconductor manufacturing, commitment to Boise, long-term career vision, and experience scaling processes (AM scale-up, PSA SOPs).
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('overview')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('interviewers');showSection('share')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- SHARE METHOD -->
+  <div class="section" id="sec-share">
+    <h2>\ud83d\udcd6 SHARE Method Framework</h2>
+    <p style="margin-bottom:1rem;">All behavioral answers use the SHARE method \u2014 an enhanced alternative to STAR that includes reflective evaluation.</p>
+    <table>
+      <tr><th style="width:15%">Letter</th><th>Meaning</th><th>What to Do</th></tr>
+      <tr><td><strong style="font-size:1.1rem;color:var(--navy);">S</strong></td><td><strong>Situation</strong></td><td>Set the scene. Describe the specific context, project, or challenge.</td></tr>
+      <tr><td><strong style="font-size:1.1rem;color:var(--navy);">H</strong></td><td><strong>Hindrance</strong></td><td>Outline obstacles, constraints, or blockers that made it difficult.</td></tr>
+      <tr><td><strong style="font-size:1.1rem;color:var(--navy);">A</strong></td><td><strong>Action</strong></td><td>Describe the specific steps YOU took to overcome the hindrance.</td></tr>
+      <tr><td><strong style="font-size:1.1rem;color:var(--navy);">R</strong></td><td><strong>Result</strong></td><td>Quantify the outcome. Use numbers, percentages, dollar figures.</td></tr>
+      <tr><td><strong style="font-size:1.1rem;color:var(--navy);">E</strong></td><td><strong>Evaluate</strong></td><td>Reflect on what you learned and how you\u2019d apply it at Micron.</td></tr>
+    </table>
+    <div class="card green">
+      <strong>\ud83d\udca1 Pro Tip:</strong> The \u201cE\u201d (Evaluate) is your differentiator. It shows self-awareness and forward thinking \u2014 exactly what Micron\u2019s evaluation criteria reward.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('interviewers')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('share');showSection('common5')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- TOP 5 QUESTIONS -->
+  <div class="section" id="sec-common5">
+    <h2>\u2753 Top 5 Common Interview Questions</h2>
+    ${[
+      {q:'Tell me about yourself and why you\u2019re interested in this role.',
+       a:`<span class="share-label">S</span> Mechanical Engineer with M.S. from ASU, currently Product and Process Engineer at OneH2 focused on hydrogen systems.<br><br>
+<span class="share-label">H</span> Transitioning from hydrogen to semiconductor materials planning requires demonstrating transferable analytical and supply chain skills.<br><br>
+<span class="share-label">A</span> Led DOE optimization (+20% process margin), drove Lean initiatives ($400K savings) through part standardization & vendor sourcing, used SQL/JMP for data-driven monitoring, managed BOMs, and coordinated cross-functionally.<br><br>
+<span class="share-label">R</span> These map directly to materials forecasting, cost analysis, and supplier collaboration at Micron.<br><br>
+<span class="share-label">E</span> Micron\u2019s US expansion is a once-in-a-generation opportunity to build from the ground up. My analytical engineering background positions me to add value from day one.`,
+       key:'Bridge hydrogen engineering \u2192 semiconductor materials planning via shared analytical, cost optimization, and cross-functional skills.'},
+      {q:'Describe a time you solved a complex problem using data analysis.',
+       a:`<span class="share-label">S</span> H\u2082 purity dropped below spec at OneH2, threatening quality and deliverables.<br><br>
+<span class="share-label">H</span> Unknown root cause \u2014 multiple variables, no historical baselines.<br><br>
+<span class="share-label">A</span> Led 8D task force. Collected data in SQL/JMP, performed statistical analysis, isolated faulty drain filter causing moisture issues. Implemented filter replacement + SPC limits.<br><br>
+<span class="share-label">R</span> Restored H\u2082 purity, prevented recurring failures, reduced future diagnostic time ~50%.<br><br>
+<span class="share-label">E</span> Structured problem-solving (8D) + statistical tools \u2014 directly applicable to material quality monitoring at Micron.`,
+       key:'8D/data analysis with SQL and JMP \u2014 relevant to materials quality monitoring.'},
+      {q:'Give an example of how you reduced costs or improved efficiency.',
+       a:`<span class="share-label">S</span> OneH2 used inconsistent fittings/components across product lines \u2014 inflated costs, complex BOMs.<br><br>
+<span class="share-label">H</span> No standardized framework. Engineers chose independently. Consolidation couldn\u2019t disrupt active projects.<br><br>
+<span class="share-label">A</span> Lean audit of all fittings, identified redundancies, standardized across SS & aluminum, negotiated volume pricing with fewer vendors.<br><br>
+<span class="share-label">R</span> $400K savings, simplified BOMs, reduced supplier complexity, shorter lead times.<br><br>
+<span class="share-label">E</span> This maps to Micron\u2019s materials planning needs: standardizing materials, optimizing sourcing, reducing excess while maintaining quality.`,
+       key:'$400K Lean savings through BOM standardization \u2014 core materials planning competency.'},
+      {q:'Tell me about a time you collaborated with cross-functional teams.',
+       a:`<span class="share-label">S</span> Needed to release a new hydronic thermal system from design through manufacturing at OneH2.<br><br>
+<span class="share-label">H</span> Required alignment between mechanical, electrical, manufacturing, supply chain, and quality \u2014 competing priorities.<br><br>
+<span class="share-label">A</span> Owned end-to-end design, facilitated reviews with manufacturing for producibility, coordinated sourcing with supply chain, FMEA with quality.<br><br>
+<span class="share-label">R</span> 15% thermal stability improvement, on schedule, within budget, zero manufacturing rework.<br><br>
+<span class="share-label">E</span> Cross-functional coordination is the heart of materials planning at Micron.`,
+       key:'End-to-end cross-functional delivery mirrors Micron\u2019s collaborative environment.'},
+      {q:'Why Micron, and why this specific role?',
+       a:`<span class="share-label">S</span> Following Micron\u2019s CHIPS Act expansion \u2014 transformational moment for US semiconductor manufacturing.<br><br>
+<span class="share-label">H</span> Breaking in from hydrogen requires demonstrating relevant capabilities.<br><br>
+<span class="share-label">A</span> Researched Micron\u2019s values (Innovation, Collaboration, Tenacity). My DOE, BOM optimization, vendor management, SQL/JMP, and Lean experience directly address the role.<br><br>
+<span class="share-label">R</span> Building a new high-volume fab from the ground up is a rare and exciting challenge.<br><br>
+<span class="share-label">E</span> Long-term: grow into senior planning roles at Micron. Boise is where I want to build my career.`,
+       key:'Genuine passion + long-term Boise commitment + direct skill alignment.'}
+    ].map((item, i) => `
+      <div class="qa-toggle" onclick="toggleQA(this)">
+        <h4>Q${i+1}: ${item.q}</h4>
+        <div class="qa-answer">
+          ${item.a}
+          <div class="card green" style="margin-top:0.75rem;">
+            <strong>\ud83c\udfaf Key Point:</strong> ${item.key}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('share')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('common5');showSection('culture')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- CULTURE FIT -->
+  <div class="section" id="sec-culture">
+    <h2>\ud83c\udf1f Micron Core Values Alignment</h2>
+    <table>
+      <tr><th>Value</th><th>Your Alignment</th><th>Question to Ask</th></tr>
+      <tr><td><strong>Collaboration</strong></td><td>Led cross-functional design reviews with mfg, supply chain, quality, and electrical at OneH2. DOE across Teamcenter PLM.</td><td>How do teams collaborate during expansion ramp-up?</td></tr>
+      <tr><td><strong>Tenacity</strong></td><td>8D investigation \u2014 persisted through multiple hypotheses. 100+ SPC runs for prediction models.</td><td>Biggest challenge the expansion team has pushed through?</td></tr>
+      <tr><td><strong>Customer Focused</strong></td><td>Designed to NFPA/OSHA standards. Optimized assistive devices reducing user effort 30%.</td><td>How does planning balance mfg needs vs delivery commitments?</td></tr>
+      <tr><td><strong>Innovation</strong></td><td>Novel multi-metal 3D printing process. First cure-time prediction framework in the lab.</td><td>What innovations in planning tools is the team exploring?</td></tr>
+      <tr><td><strong>People</strong></td><td>Trained production on SOPs. Mentored junior engineers on DFMA.</td><td>How does Micron invest in materials planning engineer development?</td></tr>
+    </table>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('common5')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('culture');showSection('criteria')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- EVALUATION CRITERIA -->
+  <div class="section" id="sec-criteria">
+    <h2>\ud83d\udccb Micron Evaluation Criteria Alignment</h2>
+    
+    <h3>Attributes</h3>
+    <table>
+      <tr><th style="width:22%">Attribute</th><th>Your Evidence</th></tr>
+      <tr><td><strong>Adaptable</strong></td><td>4 different engineering domains in 4 years: Rapid Prototyping \u2192 Research \u2192 Cleanroom \u2192 Hydrogen Production</td></tr>
+      <tr><td><strong>Driven to Learn</strong></td><td>Self-taught SQL & JMP. 3 publications including 2026 ScienceDirect co-authorship.</td></tr>
+      <tr><td><strong>Ownership</strong></td><td>End-to-end design ownership at OneH2. Led 8D task force with full accountability.</td></tr>
+      <tr><td><strong>Problem Solver</strong></td><td>DOE (+20%), prediction model (-26% defects), 8D (H\u2082 purity). All structured analytical approaches.</td></tr>
+    </table>
+
+    <h3>Interest & Motivation</h3>
+    <table>
+      <tr><th style="width:30%">Criteria</th><th>Your Evidence</th></tr>
+      <tr><td><strong>Culture Contributor</strong></td><td>Value collaboration & continuous improvement. Led initiatives, mentored.</td></tr>
+      <tr><td><strong>Stability/Commitment</strong></td><td>Intentional progression: MEKA (1yr) \u2192 ASU M.S. (2yr) \u2192 OneH2 (~2yr). Relocating to Boise long-term.</td></tr>
+      <tr><td><strong>Interview Prep</strong></td><td>Researched values, expansion plans, interviewer backgrounds, SHARE answers mapped to eval criteria.</td></tr>
+      <tr><td><strong>Role Prep</strong></td><td>Studied BOM mgmt, demand forecasting, cost-per-wafer, supplier mgmt, inventory optimization.</td></tr>
+    </table>
+
+    <h3>Leadership & Vision</h3>
+    <table>
+      <tr><th style="width:30%">Criteria</th><th>Your Evidence</th></tr>
+      <tr><td><strong>Teams/Projects Led</strong></td><td>8D task force, multi-metal alloy research, assistive device prototyping cycles.</td></tr>
+      <tr><td><strong>Growth Mindset</strong></td><td>4 domain transitions. Self-taught SQL, JMP, semiconductor fundamentals.</td></tr>
+      <tr><td><strong>Vision for Role</strong></td><td>Go-to analytical resource for materials planning: forecasting models, sourcing, data-driven reporting.</td></tr>
+      <tr><td><strong>Career Growth</strong></td><td>Materials Planning Eng \u2192 Senior Planning \u2192 Strategic Expansion Planning across Micron global.</td></tr>
+    </table>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('culture')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('criteria');showSection('behavioral')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- BEHAVIORAL QUESTIONS -->
+  <div class="section" id="sec-behavioral">
+    <h2>\ud83e\udde0 10 Behavioral Questions (SHARE)</h2>
+    <p style="margin-bottom:1rem;color:var(--gray);">Click each question to expand the SHARE-format answer.</p>
+    ${[
+      {q:'Tell me about a time you had to adapt to a significant change.',a:'<b>S:</b> Moved India\u2192US for grad school, pivoted from academic research to industrial hydrogen systems. <b>H:</b> Each transition: new tools (Teamcenter, SQL), new standards (NFPA/OSHA), new teams. <b>A:</b> Structured learning plans, sought mentorship, applied core analytical skills immediately. Within 3 months, leading DOE experiments. <b>R:</b> 20% process margin improvement in first major project. <b>E:</b> Adaptability is a muscle \u2014 I\u2019d apply the same intensity to semiconductor materials planning.'},
+      {q:'Describe a decision you made with incomplete information.',a:'<b>S:</b> 8D investigation \u2014 initial data pointed to multiple root causes. <b>H:</b> Couldn\u2019t shut down system for extended testing; sensor limitations. <b>A:</b> Prioritized hypotheses by probability/impact, designed targeted tests during planned maintenance, used JMP to narrow. <b>R:</b> Found faulty drain filter in 2 weeks without extended downtime. <b>E:</b> Materials planning often requires forecasting with incomplete data \u2014 I\u2019m comfortable with structured decisions under uncertainty.'},
+      {q:'Tell me about a time you improved a process.',a:'<b>S:</b> No standardized fitting selection at OneH2. <b>H:</b> Hundreds of unique part numbers, no consolidated spend view. <b>A:</b> Lean audit, standardization matrix, consolidated suppliers, design guidelines. <b>R:</b> $400K savings, simplified BOMs, reduced lead times, repeatable framework. <b>E:</b> Continuous improvement is core to materials planning.'},
+      {q:'How you handled a tight deadline.',a:'<b>S:</b> Hard deadline for reactor component at CNCE. <b>H:</b> Leak detection revealed unexpected seal failures \u2014 2+ week delay risk. <b>A:</b> Immediate root-cause, bracket redesign, expedited fabrication, extended hours for validation. <b>R:</b> On-time delivery, -10% unplanned downtime, +6-8 hrs/month uptime going forward. <b>E:</b> Practiced at responding urgently to disruptions while maintaining quality.'},
+      {q:'A time you learned something new quickly.',a:'<b>S:</b> Needed SQL/JMP at OneH2 with no prior experience. <b>H:</b> No formal training, needed to be productive immediately. <b>A:</b> Evening courses, practiced on production data, feedback from colleagues. Productive in 4 weeks. <b>R:</b> SQL analysis identified optimal setpoints improving hydrogen yield. <b>E:</b> Driven to learn \u2014 I\u2019d apply same intensity to Micron\u2019s planning systems.'},
+      {q:'Influencing others without direct authority.',a:'<b>S:</b> Needed manufacturing to adopt design changes. <b>H:</b> Team resistant mid-run, viewed changes as disruptions. <b>A:</b> Data-backed presentation on assembly time/rework reduction, invited their input on timing. <b>R:</b> Voluntary adoption, snap-fits reduced assembly 1,400+ min/month. <b>E:</b> Materials planning requires influencing procurement, production, engineering \u2014 data is how I do it.'},
+      {q:'Taking ownership of a mistake.',a:'<b>S:</b> Set cure parameters from literature without validation at ASU. <b>H:</b> First batch: high defects, wasted a week of material. <b>A:</b> Acknowledged error, developed cure-time prediction model, established SPC limits across 100+ runs. <b>R:</b> -26% defects \u2014 turned mistake into lab\u2019s top process improvement. <b>E:</b> Own mistakes quickly, fix systematically, convert to lasting improvements.'},
+      {q:'Prioritizing competing demands.',a:'<b>S:</b> Simultaneous design projects, 8D investigation, and Lean initiative. <b>H:</b> Different stakeholders, urgency levels, timelines. <b>A:</b> Priority matrix: 8D (quality risk) first, cost savings (long-term impact) second, design iterations (scheduled). Transparent communication. <b>R:</b> All three delivered on time. <b>E:</b> Materials planning = constant reprioritization. Comfortable with clear criteria.'},
+      {q:'Working with a difficult stakeholder.',a:'<b>S:</b> Supplier consistently missed delivery for SS fittings. <b>H:</b> Strained relationship; switching = qualification delays. <b>A:</b> Collaborative call to understand constraints, shared forecast for visibility, negotiated buffer stock + milestone tracking. <b>R:</b> On-time delivery improved, relationship maintained. <b>E:</b> Supplier management is central to materials planning \u2014 collaborative, not adversarial.'},
+      {q:'Championing continuous improvement.',a:'<b>S:</b> After 8D, recognized no systematic monitoring framework. <b>H:</b> Team was firefighting, not building prevention. <b>A:</b> Built SQL/JMP data pipeline, SPC limits, dashboards flagging deviations. <b>R:</b> -50% diagnostic time, shifted culture reactive\u2192proactive. <b>E:</b> Preventive, data-driven mindset for materials planning.'}
+    ].map((item, i) => `
+      <div class="qa-toggle" onclick="toggleQA(this)">
+        <h4>BQ${i+1}: ${item.q}</h4>
+        <div class="qa-answer">${item.a}</div>
+      </div>
+    `).join('')}
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('criteria')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('behavioral');showSection('technical')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- TECHNICAL -->
+  <div class="section" id="sec-technical">
+    <h2>\u2699\ufe0f Technical Interview Preparation</h2>
+    
+    <div class="qa-toggle" onclick="toggleQA(this)">
+      <h4>Scenario 1: Material Demand Forecasting for a New Fab</h4>
+      <div class="qa-answer">
+        <strong>Question:</strong> How would you build a material demand forecast for a new semiconductor fab?<br><br>
+        <strong>Ideal Answer:</strong> Start with technology roadmap and planned wafer starts \u2192 BOM-based material requirements. Cross-reference with equipment installation schedules to phase needs by quarter. Use historical data from similar fabs as baselines. Build safety stock models based on supplier lead times and demand variability. Rolling monthly forecast as plans refine.<br><br>
+        <div class="card green"><strong>Your Experience:</strong> Built production planning models from scratch at OneH2, forecasting material needs from BOM analysis and production schedules. Used SQL to track consumption patterns.</div>
+      </div>
+    </div>
+
+    <div class="qa-toggle" onclick="toggleQA(this)">
+      <h4>Scenario 2: Supplier Risk Mitigation</h4>
+      <div class="qa-answer">
+        <strong>Question:</strong> Critical chemical supplier may miss delivery by 3 weeks. What do you do?<br><br>
+        <strong>Ideal Answer:</strong> Assess inventory runway \u2192 communicate production impact \u2192 identify alternate suppliers \u2192 negotiate partial/expedited shipments \u2192 escalate with impact assessment & mitigation plan \u2192 document for future risk assessment, consider dual-sourcing.<br><br>
+        <div class="card green"><strong>Your Experience:</strong> Managed supplier delivery issues at OneH2. Built buffer stock agreements, milestone-based tracking, maintained continuity without qualification delays.</div>
+      </div>
+    </div>
+
+    <div class="qa-toggle" onclick="toggleQA(this)">
+      <h4>Scenario 3: Cost Reduction Analysis</h4>
+      <div class="qa-answer">
+        <strong>Question:</strong> How would you identify cost-saving opportunities in fab materials procurement?<br><br>
+        <strong>Ideal Answer:</strong> Baseline materials cost per wafer \u2192 Pareto top-spend categories \u2192 evaluate: volume consolidation, supplier negotiations, alt materials qualification, inventory optimization \u2192 business cases with ROI \u2192 phased implementation with quality gates \u2192 quarterly tracking.<br><br>
+        <div class="card green"><strong>Your Experience:</strong> Applied exactly this at OneH2: audit, identify redundancies, consolidate, negotiate volume pricing. Result: $400K savings. SQL/JMP for cost analysis.</div>
+      </div>
+    </div>
+
+    <div class="card amber" style="margin-top:1rem;">
+      <strong>\ud83d\udcda Brush Up On:</strong> Semiconductor wafer fabrication basics (DRAM/NAND flows), MRP/ERP fundamentals (SAP), demand planning (S&OP), semiconductor supply chain dynamics (long lead times, sole-source risks).
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('behavioral')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('technical');showSection('weakness')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- WEAKNESS -->
+  <div class="section" id="sec-weakness">
+    <h2>\ud83d\udee1\ufe0f Weakness Question Strategy</h2>
+    <p style="margin-bottom:1rem;">Pick ONE version that feels most natural. Practice it until it\u2019s smooth.</p>
+    
+    <div class="card">
+      <h4>Version 1: Skill-Based \u2728 (Recommended for this role)</h4>
+      Still building deep semiconductor supply chain expertise. Strong analytical/planning fundamentals from hydrogen, but recognize unique semiconductor characteristics (long equipment lead times, complex chemical supply chains). Actively studying. This role is an accelerant.
+    </div>
+    <div class="card">
+      <h4>Version 2: Personality-Based</h4>
+      Can be overly thorough in analysis, spending more time validating than necessary. Working on setting decision criteria upfront \u2014 defining \u201cgood enough\u201d data for each decision type.
+    </div>
+    <div class="card">
+      <h4>Version 3: Work Style-Based</h4>
+      Tend to take on too many improvement projects simultaneously. Getting better at priority matrix to sequence by business impact, delivering highest-value work first.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('technical')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('weakness');showSection('questions')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- QUESTIONS TO ASK -->
+  <div class="section" id="sec-questions">
+    <h2>\ud83d\udca1 Strategic Questions to Ask</h2>
+    <table>
+      <tr><th>#</th><th>Question</th><th>Purpose</th></tr>
+      <tr><td>1</td><td>What does the first 90 days look like?</td><td>Proactive planning mindset</td></tr>
+      <tr><td>2</td><td>How does materials planning interact with production and R&D during ramp-up?</td><td>Cross-functional understanding</td></tr>
+      <tr><td>3</td><td>What planning systems/tools does the team use?</td><td>Technical curiosity</td></tr>
+      <tr><td>4</td><td>Biggest challenge the expansion team faces right now?</td><td>Problem-solver mentality</td></tr>
+      <tr><td>5</td><td>How does Micron measure success for this role?</td><td>Results orientation</td></tr>
+      <tr><td>6</td><td>Opportunities for professional growth?</td><td>Long-term commitment</td></tr>
+      <tr><td>7</td><td>How is the team preparing for phased ramp of the new facility?</td><td>Expansion understanding</td></tr>
+      <tr><td>\ud83c\udfaf</td><td><strong>For Erik:</strong> How does materials planning integrate into broader capital planning (~$600M)?</td><td>Tailored + shows research</td></tr>
+      <tr><td>\ud83c\udfaf</td><td><strong>For Jeff:</strong> What makes Boise expansion unique vs previous global expansions?</td><td>Tailored + respects experience</td></tr>
+      <tr><td>10</td><td>What\u2019s the 3-5 year vision for the US expansion planning team?</td><td>Strategic thinking</td></tr>
+    </table>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('weakness')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('questions');showSection('closing')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- CLOSING STATEMENTS -->
+  <div class="section" id="sec-closing">
+    <h2>\ud83c\udf99\ufe0f Interview Closing Statements</h2>
+    <div class="card green">
+      <h4>Version 1: Confidence + Fit</h4>
+      Thank you for your time. I\u2019m even more confident that my analytical background, cost optimization experience, and cross-functional skills are a strong fit. I\u2019m genuinely excited about contributing to Micron\u2019s US expansion \u2014 building a new facility from the ground up is exactly the challenge I want. I\u2019m ready to relocate to Boise and invest in a long-term career at Micron. What are the next steps?
+    </div>
+    <div class="card">
+      <h4>Version 2: Enthusiasm + Value Proposition</h4>
+      I appreciate the conversation. This role sits at the intersection of data analysis, supply chain optimization, and manufacturing execution \u2014 exactly where my strengths lie. I can hit the ground running with my SQL and DOE experience while quickly learning Micron\u2019s planning systems. I\u2019d love to continue in the process.
+    </div>
+    <div class="card">
+      <h4>Version 3: Mission-Aligned</h4>
+      Thank you \u2014 this has reinforced my excitement. The CHIPS Act expansion is one of the most important manufacturing investments in the country, and I want to contribute meaningfully. My $400K savings through Lean and data-driven problem solving maps directly to what this team needs. Looking forward to next steps.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('questions')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('closing');showSection('thankyou')">Done \u2713 Next \u2192</button>
+    </div>
+  </div>
+
+  <!-- THANK YOU EMAIL -->
+  <div class="section" id="sec-thankyou">
+    <h2>\ud83d\udce7 Post-Interview Thank You Email</h2>
+    
+    <h3>Individual (Erik ReVeal)</h3>
+    <div class="card" style="font-family:Georgia,serif;background:#FFFEF5;">
+      <strong>Subject: Thank You \u2013 Materials Planning Engineer Interview</strong><br><br>
+      Dear Erik,<br><br>
+      Thank you for taking the time to speak with me today about the Materials Planning Engineer role on the US Expansion team. I especially appreciated hearing about <em>[specific topic discussed]</em>.<br><br>
+      Our conversation reinforced my excitement about contributing to Micron\u2019s Boise expansion. My experience in data-driven process optimization, Lean cost reduction, and cross-functional collaboration positions me well to add value to your team quickly.<br><br>
+      I\u2019m eager to continue in the process and happy to provide any additional information.<br><br>
+      Best regards,<br>
+      Vaibhav Mistari
+    </div>
+
+    <h3>Panel (Erik ReVeal & Jeff Binford)</h3>
+    <div class="card" style="font-family:Georgia,serif;background:#FFFEF5;">
+      <strong>Subject: Thank You \u2013 Materials Planning Engineer Interview</strong><br><br>
+      Dear Erik and Jeff,<br><br>
+      Thank you both for the engaging conversation today. Erik, I valued your insights on <em>[specific topic]</em>. Jeff, your perspective on <em>[specific topic]</em> gave me a clear picture of the team\u2019s mission.<br><br>
+      I\u2019m excited about the opportunity to contribute my analytical and cost optimization experience to Micron\u2019s expansion. The combination of building new planning processes and supporting production ramp-up is exactly the challenge I\u2019m looking for.<br><br>
+      Best regards,<br>
+      Vaibhav Mistari
+    </div>
+
+    <div class="card amber">
+      <strong>\u23f0 Timing:</strong> Send within 2-4 hours of interview. Personalize the bracketed sections with specific conversation details.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="showSection('closing')">\u2190 Back</button>
+      <button class="btn btn-success" onclick="markDone('thankyou');showSection('overview')">Done \u2713 Back to Overview</button>
+    </div>
+  </div>
+  `;
+}
+
+buildContent();
+renderNav();
+updateProgressBar();
+</script>
+
+</body>
+</html>
