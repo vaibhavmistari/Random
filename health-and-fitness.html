@@ -155,76 +155,131 @@ const initialMetrics = [
   { date: '2026-04-02', weight: 73.1, bodyFat: 22.8, leanMass: 56.4, muscleMass: 32.5, bmi: 24.3, bmr: 1611 },
 ];
 
-const workoutPlan = [
-  { day: "Day 1 — Push", tag: "Chest · Shoulders · Triceps · ~500 kcal", color: "#f87171", burn: "~500 kcal", exercises: [
+/* ─── WEEK A ─── Heavy compounds, machines for chest/shoulders, hypertrophy bias */
+const weekAPlan = [
+  { day: "Day 1 — Push", tag: "Chest · Shoulders · Triceps · ~500 kcal · ~60 min", color: "#f87171", burn: "~500 kcal", exercises: [
     { name: "Warm-up: Treadmill (incline walk)", sets: "5 min", note: "3–5% incline, 5.5 km/h — primes heart rate" },
-    { name: "Flat Barbell Bench Press", sets: "4 × 8–10", note: "Main chest compound — use the Technogym barbell bench" },
+    { name: "Flat Barbell Bench Press", sets: "4 × 8–10", note: "Main chest compound on the Technogym barbell bench" },
     { name: "Incline Dumbbell Press", sets: "3 × 10–12", note: "Adjustable bench at 30° — upper chest focus" },
-    { name: "Shoulder Press Machine", sets: "3 × 10–12", note: "Technogym machine — safer overhead pattern" },
+    { name: "Shoulder Press Machine", sets: "3 × 10–12", note: "Technogym machine — controlled shoulder pattern" },
     { name: "Chest Fly Machine (Pec Deck)", sets: "3 × 12–15", note: "Full stretch, 1s squeeze at peak" },
-    { name: "Cable Crossover (low-to-high)", sets: "3 × 12–15", note: "Upper chest finisher — cable crossover machine" },
-    { name: "Tricep Rope Pushdowns", sets: "3 × 12–15", note: "Rope attachment on cable — split rope at bottom" },
-    { name: "Overhead Rope Tricep Extension", sets: "2 × 12–15", note: "Long head emphasis — same rope, face away from stack" },
-    { name: "Finisher: Stairmaster", sets: "10 min", note: "Moderate pace — burns ~100 kcal, traps visceral fat" },
+    { name: "Lateral Raises (Dumbbell)", sets: "3 × 15", note: "Side delt width — slight forward lean, lead with elbows" },
+    { name: "Tricep Rope Pushdowns", sets: "3 × 12–15", note: "Rope attachment — split rope at bottom for full contraction" },
+    { name: "Finisher: Stairmaster", sets: "10 min", note: "Moderate pace — ~100 kcal, traps visceral fat" },
   ]},
-  { day: "Day 2 — Pull", tag: "Back · Biceps · Rear Delts · ~500 kcal", color: "#60a5fa", burn: "~500 kcal", exercises: [
+  { day: "Day 2 — Pull", tag: "Back · Biceps · Rear Delts · ~500 kcal · ~60 min", color: "#60a5fa", burn: "~500 kcal", exercises: [
     { name: "Warm-up: Rowing Machine", sets: "5 min", note: "Easy pace — primes lats and upper back" },
-    { name: "Lat Pulldowns (wide grip)", sets: "4 × 8–10", note: "Lat pulls machine — pull to upper chest, squeeze shoulder blades" },
-    { name: "Seated Cable Row (V-handle)", sets: "4 × 10–12", note: "Seated cable row machine — chest tall, drive elbows back" },
-    { name: "Single-Arm Dumbbell Row", sets: "3 × 10–12 each", note: "Dumbbell + bench — knee and hand support on bench" },
-    { name: "Smith Machine Bent-Over Row", sets: "3 × 10–12", note: "Smith machine — underhand grip, thickens mid-back" },
-    { name: "Face Pulls (cable rope)", sets: "3 × 15–20", note: "Rope attachment, high pulley — rear delts + posture fix" },
-    { name: "Dumbbell Curls (seated bench)", sets: "3 × 10–12", note: "Seated on adjustable bench, strict form" },
-    { name: "Cable Curls (small bar)", sets: "3 × 12–15", note: "Cable machine + small bar attachment — constant tension" },
+    { name: "Lat Pulldowns (wide grip)", sets: "4 × 8–10", note: "Pull to upper chest, squeeze shoulder blades down" },
+    { name: "Seated Cable Row (V-handle)", sets: "4 × 10–12", note: "Chest tall, drive elbows back — mid-back thickness" },
+    { name: "Single-Arm Dumbbell Row", sets: "3 × 10–12 each", note: "Knee + hand on adjustable bench, full lat stretch" },
+    { name: "Face Pulls (cable rope)", sets: "3 × 15–20", note: "Rope on high pulley — rear delts + posture fix" },
+    { name: "Dumbbell Curls (seated)", sets: "3 × 10–12", note: "Seated on adjustable bench, no swing" },
     { name: "Hammer Curls (DB)", sets: "2 × 12–15", note: "Forearm & brachialis — neutral grip" },
     { name: "Finisher: Elliptical", sets: "10 min", note: "Moderate resistance — ~90 kcal, low-impact recovery" },
   ]},
-  { day: "Day 3 — Legs & Abs", tag: "Quads · Hams · Glutes · Core · ~600 kcal", color: "#34d399", burn: "~600 kcal", exercises: [
+  { day: "Day 3 — Legs & Abs", tag: "Quads · Hams · Glutes · Core · ~600 kcal · ~65 min", color: "#34d399", burn: "~600 kcal", exercises: [
     { name: "Warm-up: Indoor Bike", sets: "5 min", note: "Easy spin — warms up knees and hips" },
-    { name: "Smith Machine Squats", sets: "4 × 8–10", note: "Smith machine — feet slightly forward, full depth, safer than free squats" },
-    { name: "Romanian Deadlifts (Barbell)", sets: "3 × 10–12", note: "Barbell — hinge at hips, feel hamstring stretch" },
+    { name: "Smith Machine Squats", sets: "4 × 8–10", note: "Feet slightly forward, full depth — safer than free squats" },
+    { name: "Romanian Deadlifts (Barbell)", sets: "3 × 10–12", note: "Hinge at hips, feel hamstring stretch" },
     { name: "Leg Extension Machine", sets: "3 × 12–15", note: "Quad isolation — 1s pause at top" },
-    { name: "Seated Leg Curl Machine", sets: "3 × 12–15", note: "Hamstring isolation — controlled eccentric" },
-    { name: "Hip Abductor Machine", sets: "3 × 15–20", note: "Glute medius — crucial for hip stability and the 'slim' look" },
-    { name: "Walking Lunges (Dumbbells)", sets: "3 × 12 each leg", note: "Light-to-moderate DBs — glutes + single-leg stability" },
-    { name: "Kettlebell Goblet Squat", sets: "3 × 15", note: "Burnout set — drives volume for fat loss" },
-    { name: "Standing Calf Raises (Smith)", sets: "4 × 15–20", note: "Smith machine — full ROM, pause at stretch" },
-    { name: "Cable Crunches (rope)", sets: "3 × 15", note: "Cable machine + rope — upper abs, crunch down hard" },
-    { name: "Bench Leg Raises (with leg roller)", sets: "3 × 12–15", note: "Adjustable bench leg attachment — lower abs, controlled tempo" },
-    { name: "Finisher: Stairmaster", sets: "10 min", note: "Moderate pace — ~100 kcal, extra glute and core work" },
+    { name: "Hip Abductor Machine", sets: "3 × 15–20", note: "Glute medius — key for hip stability and the slim look" },
+    { name: "Standing Calf Raises (Smith)", sets: "3 × 15–20", note: "Smith machine — full ROM, pause at stretch" },
+    { name: "Cable Crunches (rope)", sets: "3 × 15", note: "Cable + rope — upper abs, crunch hard" },
+    { name: "Finisher: Stairmaster", sets: "10 min", note: "Moderate pace — ~100 kcal, extra glute work" },
   ]},
-  { day: "Day 4 — Push (V2)", tag: "Incline Focus · Machines · HIIT · ~550 kcal", color: "#fb923c", burn: "~550 kcal", exercises: [
+  { day: "Day 4 — Push (V2)", tag: "Cables · Machines · HIIT · ~550 kcal · ~60 min", color: "#fb923c", burn: "~550 kcal", exercises: [
     { name: "Warm-up: Elliptical", sets: "5 min", note: "Use arm handles too — warms full upper body" },
-    { name: "Incline Barbell Press", sets: "4 × 8–10", note: "Adjustable bench at 30° + barbell — upper chest priority" },
-    { name: "Flat Dumbbell Press", sets: "3 × 10–12", note: "Deep stretch at the bottom — chest emphasis" },
-    { name: "Smith Machine Overhead Press", sets: "3 × 10–12", note: "Smith machine, seated on adjustable bench — controlled shoulder compound" },
-    { name: "Cable Crossover (mid-height)", sets: "3 × 12–15", note: "Cable crossover — chest squeeze, elbows slightly bent" },
-    { name: "Lateral Raises (Cable)", sets: "3 × 15–20", note: "Cable machine, small D-handle — constant tension beats DBs here" },
-    { name: "Close-Grip Smith Bench Press", sets: "3 × 10–12", note: "Smith machine, hands shoulder-width — hits triceps hard" },
-    { name: "Single-Arm Cable Tricep Extension", sets: "3 × 12–15 each", note: "Cable + small bar or D-handle — overhead for long head" },
-    { name: "Finisher: Treadmill HIIT", sets: "15 min", note: "30s fast / 60s walk × 8 — burns ~180 kcal, great for visceral fat" },
+    { name: "Incline Dumbbell Press (heavier)", sets: "4 × 8–10", note: "Adjustable bench at 30° — go heavier than Day 1" },
+    { name: "Cable Crossover (low-to-high)", sets: "3 × 12–15", note: "Upper chest finisher — cable crossover machine" },
+    { name: "Shoulder Press Machine (heavier)", sets: "3 × 8–10", note: "Slightly heavier load — push 1–2 reps shy of failure" },
+    { name: "Lateral Raises (Cable)", sets: "3 × 15–20", note: "Cable + small D-handle — constant tension beats DBs here" },
+    { name: "Overhead Rope Tricep Extension", sets: "3 × 12–15", note: "Rope attachment, face away from stack — long head emphasis" },
+    { name: "Finisher: Treadmill HIIT", sets: "12 min", note: "30s fast / 60s walk × 8 — ~150 kcal, great for visceral fat" },
   ]},
-  { day: "Day 5 — Pull + Posterior Chain", tag: "Deadlift · Lats · Kettlebells · ~550 kcal", color: "#a78bfa", burn: "~550 kcal", exercises: [
+  { day: "Day 5 — Pull + Posterior", tag: "Deadlift · Lats · Kettlebells · ~550 kcal · ~60 min", color: "#a78bfa", burn: "~550 kcal", exercises: [
     { name: "Warm-up: Rowing Machine", sets: "5 min", note: "Easy pace — primes hinge pattern and lats" },
-    { name: "Barbell Deadlifts (Conventional)", sets: "4 × 5–6", note: "Heavy compound — hinge hard, keep bar close" },
-    { name: "Wide-Grip Lat Pulldowns", sets: "3 × 10–12", note: "Lat pulls machine — width focus, pull to collarbone" },
-    { name: "Seated Cable Row (close grip)", sets: "3 × 10–12", note: "Mid-back thickness — pause 1s at contraction" },
-    { name: "Kettlebell Swings", sets: "4 × 15", note: "Explosive hip drive — huge posterior chain + fat-loss burn" },
-    { name: "Seated Leg Curl Machine", sets: "3 × 12–15", note: "Hamstring isolation" },
-    { name: "Hip Abductor Machine", sets: "3 × 15", note: "Glute shape and hip stability" },
-    { name: "Cable Crunches (rope)", sets: "3 × 15", note: "Upper abs — constant cable tension" },
-    { name: "Plank Hold (bench feet elevated)", sets: "3 × 45–60s", note: "Feet on adjustable bench — harder than floor plank" },
+    { name: "Barbell Deadlifts (Conventional)", sets: "4 × 5–6", note: "Heavy compound — hinge hard, keep bar close to body" },
+    { name: "Lat Pulldowns (close grip)", sets: "3 × 10–12", note: "V-handle attachment — different lat angle than Day 2" },
+    { name: "Kettlebell Swings", sets: "4 × 15", note: "Explosive hip drive — huge posterior chain + fat burn" },
+    { name: "Seated Leg Curl Machine", sets: "3 × 12–15", note: "Hamstring isolation — controlled eccentric" },
+    { name: "Plank Hold (feet on bench)", sets: "3 × 45–60s", note: "Feet on adjustable bench — harder than floor plank" },
     { name: "Finisher: Indoor Bike", sets: "10 min", note: "Moderate resistance — ~100 kcal flush, low-impact" },
   ]},
   { day: "Day 6 — Visceral Fat Cardio", tag: "Dr. Kim Protocol · ~450–550 kcal", color: "#fb923c", burn: "~500 kcal", exercises: [
     { name: "Option A — Indoor Bike (steady)", sets: "45 min", note: "Conversational pace — targets visceral fat even when scale doesn't move (~400 kcal)" },
     { name: "Option B — Stairmaster HIIT", sets: "25 min", note: "1 min hard / 2 min easy × 8 — 70–80% max HR (~140–155 BPM), ~350 kcal" },
-    { name: "Option C — Cardio Circuit", sets: "40 min", note: "10 min rowing + 15 min elliptical + 10 min stairmaster + 5 min bike (~450 kcal) — variety, crushes boredom" },
+    { name: "Option C — Cardio Circuit", sets: "40 min", note: "10 min rowing + 15 min elliptical + 10 min stairmaster + 5 min bike (~450 kcal)" },
     { name: "Walk 10,000 steps", sets: "All day", note: "Critical for desk workers — adds another ~300–400 kcal" },
     { name: "Stretching / Mobility", sets: "15 min", note: "Recovery + flexibility" },
   ]},
   { day: "Day 7 — Full Rest", tag: "Recovery · Walk · Foam Roll · ~250 kcal", color: "#666", burn: "~250 kcal", exercises: [
     { name: "Walk 8,000–10,000 steps", sets: "All day", note: "Don't sit all day on rest day — ~250–350 kcal from walking alone" },
+    { name: "Foam Rolling", sets: "15 min", note: "Quads, hamstrings, upper back" },
+    { name: "Light Stretching", sets: "20 min", note: "Active recovery" },
+  ]},
+];
+
+/* ─── WEEK B ─── Different angles, dumbbells lead chest, Smith leads shoulders */
+const weekBPlan = [
+  { day: "Day 1 — Push", tag: "Chest · Shoulders · Triceps · ~500 kcal · ~60 min", color: "#f87171", burn: "~500 kcal", exercises: [
+    { name: "Warm-up: Treadmill (incline walk)", sets: "5 min", note: "3–5% incline, 5.5 km/h — primes heart rate" },
+    { name: "Flat Dumbbell Press", sets: "4 × 8–10", note: "Deeper stretch than barbell — chest emphasis" },
+    { name: "Incline Barbell Press", sets: "3 × 10–12", note: "Adjustable bench at 30° + barbell — upper chest priority" },
+    { name: "Smith Machine Overhead Press", sets: "3 × 10–12", note: "Smith machine, seated on adjustable bench — controlled OHP" },
+    { name: "Cable Crossover (mid-height)", sets: "3 × 12–15", note: "Chest squeeze, elbows slightly bent — different angle than Week A pec deck" },
+    { name: "Lateral Raises (Cable)", sets: "3 × 15–20", note: "Cable + small D-handle — constant tension on side delt" },
+    { name: "Close-Grip Smith Bench Press", sets: "3 × 10–12", note: "Smith machine, hands shoulder-width — heavy tricep compound" },
+    { name: "Finisher: Stairmaster", sets: "10 min", note: "Moderate pace — ~100 kcal" },
+  ]},
+  { day: "Day 2 — Pull", tag: "Back · Biceps · Rear Delts · ~500 kcal · ~60 min", color: "#60a5fa", burn: "~500 kcal", exercises: [
+    { name: "Warm-up: Rowing Machine", sets: "5 min", note: "Easy pace — primes lats and upper back" },
+    { name: "Lat Pulldowns (close grip, V-handle)", sets: "4 × 8–10", note: "V-handle — emphasizes lower lats, different from Week A wide grip" },
+    { name: "Smith Machine Bent-Over Row", sets: "4 × 10–12", note: "Underhand grip — thickens mid-back, fixed bar path" },
+    { name: "Seated Cable Row (rope)", sets: "3 × 12", note: "Rope attachment — pull rope apart at end for upper-back squeeze" },
+    { name: "Face Pulls (cable rope)", sets: "3 × 15–20", note: "Rope on high pulley — rear delts + posture (kept both weeks, critical)" },
+    { name: "Cable Curls (small bar)", sets: "3 × 12–15", note: "Cable + small bar — constant tension throughout the curl" },
+    { name: "Hammer Curls (DB)", sets: "2 × 12–15", note: "Brachialis + forearm" },
+    { name: "Finisher: Elliptical", sets: "10 min", note: "Moderate resistance — ~90 kcal" },
+  ]},
+  { day: "Day 3 — Legs & Abs", tag: "Quads · Hams · Glutes · Core · ~600 kcal · ~65 min", color: "#34d399", burn: "~600 kcal", exercises: [
+    { name: "Warm-up: Indoor Bike", sets: "5 min", note: "Easy spin — warms up knees and hips" },
+    { name: "Smith Machine Front Squats", sets: "4 × 8–10", note: "Bar racked across front delts — quad-dominant, different stimulus from Week A back squat" },
+    { name: "Walking Lunges (Dumbbells)", sets: "3 × 12 each leg", note: "Light-to-moderate DBs — glutes + single-leg stability" },
+    { name: "Seated Leg Curl Machine", sets: "3 × 12–15", note: "Hamstring isolation — paired with lunges" },
+    { name: "Hip Abductor Machine", sets: "3 × 15–20", note: "Glute medius — key for hip shape" },
+    { name: "Standing Calf Raises (Smith)", sets: "3 × 15–20", note: "Full ROM, pause at stretch" },
+    { name: "Bench Leg Raises (with leg roller)", sets: "3 × 12–15", note: "Adjustable bench leg attachment — lower abs, controlled tempo" },
+    { name: "Finisher: Stairmaster", sets: "10 min", note: "Moderate pace — ~100 kcal" },
+  ]},
+  { day: "Day 4 — Push (V2)", tag: "Heavy Bench · Machines · HIIT · ~550 kcal · ~60 min", color: "#fb923c", burn: "~550 kcal", exercises: [
+    { name: "Warm-up: Elliptical", sets: "5 min", note: "Use arm handles too — warms full upper body" },
+    { name: "Flat Barbell Bench Press (heavier)", sets: "4 × 6–8", note: "Lower rep range than Week A Day 1 — push strength" },
+    { name: "Incline Dumbbell Press", sets: "3 × 10–12", note: "Upper chest volume — different angle than the BB press above" },
+    { name: "Chest Fly Machine (Pec Deck)", sets: "3 × 12–15", note: "Full stretch, 1s squeeze at peak" },
+    { name: "Shoulder Press Machine", sets: "3 × 10–12", note: "Technogym machine — controlled shoulder pattern" },
+    { name: "Lateral Raises (Dumbbell)", sets: "3 × 15", note: "Slight forward lean, lead with elbows" },
+    { name: "Single-Arm Cable Tricep Extension", sets: "3 × 12 each", note: "Cable + D-handle, overhead — long head emphasis" },
+    { name: "Finisher: Treadmill HIIT", sets: "12 min", note: "30s fast / 60s walk × 8 — ~150 kcal" },
+  ]},
+  { day: "Day 5 — Pull + Posterior", tag: "RDL · Lats · Kettlebells · ~550 kcal · ~60 min", color: "#a78bfa", burn: "~550 kcal", exercises: [
+    { name: "Warm-up: Rowing Machine", sets: "5 min", note: "Easy pace — primes hinge pattern and lats" },
+    { name: "Romanian Deadlifts (Barbell, heavier)", sets: "4 × 8", note: "Heavier than Week A Day 3 RDL — main hinge today (no conventional this week)" },
+    { name: "Lat Pulldowns (wide grip)", sets: "3 × 10–12", note: "Width focus — pull to upper chest" },
+    { name: "Single-Arm Dumbbell Row", sets: "3 × 10–12 each", note: "Knee + hand on bench — full lat stretch" },
+    { name: "Kettlebell Swings", sets: "4 × 15", note: "Explosive hip drive — huge posterior chain + fat burn" },
+    { name: "Hip Abductor Machine", sets: "3 × 15", note: "Glute medius volume" },
+    { name: "Bicycle Crunches (on bench)", sets: "3 × 20", note: "On adjustable bench — obliques + core rotation" },
+    { name: "Finisher: Indoor Bike", sets: "10 min", note: "Moderate resistance — ~100 kcal" },
+  ]},
+  { day: "Day 6 — Visceral Fat Cardio", tag: "Dr. Kim Protocol · ~450–550 kcal", color: "#fb923c", burn: "~500 kcal", exercises: [
+    { name: "Option A — Indoor Bike (steady)", sets: "45 min", note: "Conversational pace — targets visceral fat (~400 kcal)" },
+    { name: "Option B — Stairmaster HIIT", sets: "25 min", note: "1 min hard / 2 min easy × 8 — 70–80% max HR, ~350 kcal" },
+    { name: "Option C — Cardio Circuit", sets: "40 min", note: "10 min rowing + 15 min elliptical + 10 min stairmaster + 5 min bike (~450 kcal)" },
+    { name: "Walk 10,000 steps", sets: "All day", note: "Adds another ~300–400 kcal" },
+    { name: "Stretching / Mobility", sets: "15 min", note: "Recovery + flexibility" },
+  ]},
+  { day: "Day 7 — Full Rest", tag: "Recovery · Walk · Foam Roll · ~250 kcal", color: "#666", burn: "~250 kcal", exercises: [
+    { name: "Walk 8,000–10,000 steps", sets: "All day", note: "~250–350 kcal from walking alone" },
     { name: "Foam Rolling", sets: "15 min", note: "Quads, hamstrings, upper back" },
     { name: "Light Stretching", sets: "20 min", note: "Active recovery" },
   ]},
@@ -752,9 +807,21 @@ function AddMetricCard({ metricsData, setMetricsData }) {
 /* ─── GYM PLAN ─── */
 function GymPlan() {
   const [open, setOpen] = useState(null);
+  // Persist Week A/B selection so it survives refresh and feels like "where I am" in the rotation
+  const [week, setWeek] = useState(() => {
+    try { return localStorage.getItem('gymWeek') === 'B' ? 'B' : 'A'; } catch { return 'A'; }
+  });
+  useEffect(() => {
+    try { localStorage.setItem('gymWeek', week); } catch {}
+    setOpen(null); // collapse any open day when switching weeks for cleaner UX
+  }, [week]);
+
+  const activePlan = week === 'A' ? weekAPlan : weekBPlan;
+  const weekColor = week === 'A' ? '#a78bfa' : '#34d399';
+
   return React.createElement("div", null,
     React.createElement(Sec, null, "Push / Pull / Legs + Cardio — 6+1"),
-    React.createElement("p", { style: { fontSize: 13, color: "var(--c-muted-2)", marginBottom: 16, lineHeight: 1.6 } }, "5 days lifting with cardio finishers, 1 day dedicated visceral-fat cardio, 1 full rest. All exercises mapped to your Technogym gym. Heavy compound first each session. Rest 60–90s between sets, 30–45s on isolation. Log weights — add 2.5 kg every 2 weeks on compounds."),
+    React.createElement("p", { style: { fontSize: 13, color: "var(--c-muted-2)", marginBottom: 16, lineHeight: 1.6 } }, "5 days lifting (~60 min each) with cardio finishers, 1 day visceral-fat cardio, 1 full rest. Alternate Week A and Week B every week. Same muscle groups, different exercises and angles — keeps stimulus fresh and prevents plateaus. All exercises mapped to your Technogym gym."),
     React.createElement(Crd, { bg: "var(--c-targets-bg)", border: "var(--c-targets-bdr)", style: { marginBottom: 12 } },
       React.createElement("p", { style: { fontSize: 13, fontWeight: 600, color: "var(--c-targets-lbl)", marginBottom: 8 } }, "🔥 Daily Calorie Burn Target — Fat Loss + Slim Fit"),
       React.createElement("p", { style: { fontSize: 12, color: "var(--c-muted)", lineHeight: 1.6, marginBottom: 10 } },
@@ -772,15 +839,42 @@ function GymPlan() {
       React.createElement("p", { style: { fontSize: 11, color: "var(--c-dim-2)", lineHeight: 1.5, fontStyle: "italic" } }, "Belly fat responds best to sustained deficit + walking + targeted cardio — not crunches. The 10k steps habit is as important as the lifting.")
     ),
     React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, background: "var(--c-surf)", borderRadius: 10, padding: "12px 8px", border: "1px solid var(--c-border)", marginBottom: 16 } },
-      [["Duration", "60–75 min"], ["Steps", "10k/day"], ["Rest", "60–90s"], ["Burn", "500+ kcal"]].map(([l, v]) =>
+      [["Duration", "~60 min"], ["Steps", "10k/day"], ["Rest", "60–90s"], ["Burn", "500+ kcal"]].map(([l, v]) =>
         React.createElement("div", { key: l, style: { textAlign: "center" } },
           React.createElement("div", { style: { fontSize: 10, color: "var(--c-dim)" } }, l),
           React.createElement("div", { style: { fontSize: 13, fontWeight: 600, color: "var(--c-text-2)", marginTop: 2 } }, v)
         )
       )
     ),
-    workoutPlan.map((d, i) =>
-      React.createElement("div", { key: i, style: { background: "var(--c-surf)", borderRadius: 12, border: open === i ? "1px solid " + d.color + "33" : "1px solid var(--c-border)", marginBottom: 8, overflow: "hidden", transition: "border-color .2s" } },
+
+    /* ── Week A / Week B selector ── */
+    React.createElement("div", { style: { display: "flex", gap: 8, marginBottom: 14 } },
+      ['A', 'B'].map(w =>
+        React.createElement("button", {
+          key: w, onClick: () => setWeek(w),
+          style: {
+            flex: 1, padding: "12px 14px", borderRadius: 10,
+            background: week === w ? "var(--c-subtab-on-bg)" : "var(--c-subtab-off-bg)",
+            color: week === w ? "var(--c-subtab-on-txt)" : "var(--c-subtab-off-txt)",
+            border: "1px solid " + (week === w ? "var(--c-subtab-on-bg)" : "var(--c-subtab-bdr)"),
+            fontSize: 13, fontWeight: 700, transition: "all .2s",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 2
+          }
+        },
+          React.createElement("span", null, "Week " + w),
+          React.createElement("span", { style: { fontSize: 10, fontWeight: 400, opacity: .8 } },
+            w === 'A' ? "Barbell-led · Pec deck · Wide pulls" : "Dumbbell-led · Crossover · Close pulls"
+          )
+        )
+      )
+    ),
+    React.createElement("p", { style: { fontSize: 11, color: "var(--c-dim-2)", marginBottom: 12, fontStyle: "italic", lineHeight: 1.5 } },
+      "Currently following ", React.createElement("strong", { style: { color: weekColor } }, "Week " + week),
+      ". Switch to the other week next Monday — your selection is saved across refreshes."
+    ),
+
+    activePlan.map((d, i) =>
+      React.createElement("div", { key: week + '-' + i, style: { background: "var(--c-surf)", borderRadius: 12, border: open === i ? "1px solid " + d.color + "33" : "1px solid var(--c-border)", marginBottom: 8, overflow: "hidden", transition: "border-color .2s" } },
         React.createElement("button", { onClick: () => setOpen(open === i ? null : i), style: { width: "100%", padding: "14px 16px", color: "var(--c-text)", textAlign: "left", display: "flex", justifyContent: "space-between", alignItems: "center" } },
           React.createElement("div", null,
             React.createElement("div", { style: { fontSize: 14, fontWeight: 600 } }, d.day),
