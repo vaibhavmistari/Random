@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skincare & Haircare Routine</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ============ THEME VARIABLES ============ */
+  :root, [data-theme="day"] {
+    --bg-start: #FAF6F0;
+    --bg-end: #F4ECE3;
+    --text-primary: #2D2A26;
+    --text-secondary: #7A6A5A;
+    --text-heading: #3D2C1E;
+    --text-muted: #9A8878;
+    --card-bg: #FFFFFF;
+    --card-border: rgba(0,0,0,0.04);
+    --section-bg: #F8F1E5;
+    --section-border: #EBDEC9;
+    --section-divider: #F2EADD;
+    --tab-bg: #EFE4D2;
+    --top-tab-bg: #E8DCC4;
+    --tab-active-bg: #FFFFFF;
+    --product-bg: #FAF6F0;
+    --product-emoji-bg: #FFFFFF;
+    --note-bg: #FFF8EC;
+    --note-border: #D4A574;
+    --note-text: #5A4A3A;
+    --shadow: rgba(60, 40, 20, 0.05);
+    --shadow-strong: rgba(60, 40, 20, 0.1);
+    --inactive-tab: #8A7560;
+    --top-inactive-tab: #7A6240;
+    --water-bg: #E2EBF5;
+    --water-border: #C9D8E8;
+    --retinol-bg: #FBF0E2;
+    --retinol-emoji-bg: #F8E4C4;
+    --retinol-border: #EBC899;
+    --eye-bg: #F0EBFA;
+    --eye-emoji-bg: #E2DBF3;
+    --eye-border: #C8BFE8;
+    --rest-bg: #F4F0EA;
+    --rest-emoji-bg: #E5DDD0;
+    --rest-border: #D4C9B5;
+    --shampoo-bg: #E8F1F7;
+    --shampoo-emoji-bg: #D4E5F0;
+    --shampoo-border: #B5CFE0;
+    --conditioner-bg: #EAF2EC;
+    --conditioner-emoji-bg: #D5E5D9;
+    --conditioner-border: #B7D0BC;
+    --scalp-oil-bg: #ECF3E2;
+    --scalp-oil-emoji-bg: #DCE9C8;
+    --scalp-oil-border: #BFD49F;
+    --length-oil-bg: #F6EEE0;
+    --length-oil-emoji-bg: #ECDDC2;
+    --length-oil-border: #D9C495;
+    --scalp-serum-bg: #F0EBFA;
+    --scalp-serum-emoji-bg: #E2DBF3;
+    --scalp-serum-border: #C8BFE8;
+    --deep-mask-bg: #F5E8EE;
+    --deep-mask-emoji-bg: #ECD2DD;
+    --deep-mask-border: #DBB6C5;
+    --wash-bg: #E6F0F5;
+    --wash-text: #1F4A60;
+    --wash-border: #C9DDE8;
+    --step-num-bg: #D4A574;
+    --step-num-text: #FFFFFF;
+    --time-am: #B8852E;
+    --time-pm: #6464A0;
+  }
+
+  [data-theme="night"] {
+    --bg-start: #1A1F2E;
+    --bg-end: #0E1219;
+    --text-primary: #E8DDD0;
+    --text-secondary: #A39685;
+    --text-heading: #F5E9D9;
+    --text-muted: #8A7E6E;
+    --card-bg: #242B3D;
+    --card-border: rgba(255,255,255,0.06);
+    --section-bg: #2D3548;
+    --section-border: #3A4358;
+    --section-divider: #2A3142;
+    --tab-bg: #2A3142;
+    --top-tab-bg: #232A3B;
+    --tab-active-bg: #3A4358;
+    --product-bg: #2A3142;
+    --product-emoji-bg: #353D52;
+    --note-bg: #2D2818;
+    --note-border: #C99764;
+    --note-text: #D4C5AE;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-strong: rgba(0, 0, 0, 0.5);
+    --inactive-tab: #8A8270;
+    --top-inactive-tab: #A39685;
+    --water-bg: #2A3645;
+    --water-border: #3A4A5C;
+    --retinol-bg: #3D3220;
+    --retinol-emoji-bg: #4D3F28;
+    --retinol-border: #6A5638;
+    --eye-bg: #2F2A45;
+    --eye-emoji-bg: #3A3454;
+    --eye-border: #4D4570;
+    --rest-bg: #2D2A24;
+    --rest-emoji-bg: #3A362E;
+    --rest-border: #4A4438;
+    --shampoo-bg: #1F3040;
+    --shampoo-emoji-bg: #2A3F54;
+    --shampoo-border: #3D5670;
+    --conditioner-bg: #1F3329;
+    --conditioner-emoji-bg: #2A4135;
+    --conditioner-border: #3D5847;
+    --scalp-oil-bg: #2A3520;
+    --scalp-oil-emoji-bg: #36422A;
+    --scalp-oil-border: #4D5A38;
+    --length-oil-bg: #3D3220;
+    --length-oil-emoji-bg: #4D3F28;
+    --length-oil-border: #6A5638;
+    --scalp-serum-bg: #2F2A45;
+    --scalp-serum-emoji-bg: #3A3454;
+    --scalp-serum-border: #4D4570;
+    --deep-mask-bg: #3A2530;
+    --deep-mask-emoji-bg: #4A3140;
+    --deep-mask-border: #654458;
+    --wash-bg: #1F3340;
+    --wash-text: #A8D0E0;
+    --wash-border: #2C4A5A;
+    --step-num-bg: #C99764;
+    --step-num-text: #1A1F2E;
+    --time-am: #E0B068;
+    --time-pm: #9A9AD0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 28px 16px 60px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--section-border);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--shadow);
+    z-index: 100;
+    transition: all 0.3s ease;
+  }
+  .theme-toggle:hover { transform: scale(1.05); }
+  .theme-indicator {
+    position: fixed;
+    top: 70px;
+    right: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--section-border);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .theme-indicator.show { opacity: 1; transform: translateY(0); }
+
+  .header { text-align: center; margin-bottom: 24px; }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+  }
+  .header p { color: var(--text-secondary); font-size: 0.95rem; }
+
+  .top-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 0 auto 22px;
+    background: var(--top-tab-bg);
+    padding: 7px;
+    border-radius: 14px;
+    max-width: 460px;
+    transition: background 0.4s ease;
+  }
+  .top-tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 13px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--top-inactive-tab);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+  }
+  .top-tab-btn.active {
+    background: var(--tab-active-bg);
+    color: var(--text-heading);
+    box-shadow: 0 2px 6px var(--shadow-strong);
+  }
+
+  .top-tab-content { display: none; }
+  .top-tab-content.active { display: block; }
+
+  .section-sub-header {
+    text-align: center;
+    margin-bottom: 18px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin: 0 auto 22px;
+    background: var(--tab-bg);
+    padding: 6px;
+    border-radius: 12px;
+    max-width: 420px;
+    transition: background 0.4s ease;
+  }
+  .tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 11px 20px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--inactive-tab);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn.active {
+    background: var(--tab-active-bg);
+    color: var(--text-heading);
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+
+  .tab-note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 22px;
+    font-size: 0.9rem;
+    color: var(--note-text);
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .tab-note strong { color: var(--text-heading); }
+
+  .days-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 640px) { .days-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .days-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1280px) { .days-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .day-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.4s ease;
+  }
+  .day-name {
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--section-bg);
+    color: var(--text-heading);
+    border-bottom: 1px solid var(--section-border);
+  }
+  .day-card.wash-day .day-name {
+    background: var(--wash-bg);
+    color: var(--wash-text);
+    border-bottom: 1px solid var(--wash-border);
+  }
+
+  .time-section { padding: 14px 14px; }
+  .time-section + .time-section { border-top: 1px solid var(--section-divider); }
+
+  .time-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .time-label.am { color: var(--time-am); }
+  .time-label.pm { color: var(--time-pm); }
+  .time-icon { font-size: 0.95rem; }
+
+  .products { display: flex; flex-direction: column; gap: 7px; }
+  .product {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 7px 8px;
+    border-radius: 8px;
+    background: var(--product-bg);
+    transition: background 0.4s ease;
+  }
+  .product-emoji {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--product-emoji-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    border: 1px solid var(--section-border);
+    line-height: 1;
+  }
+  .product-info { flex: 1; min-width: 0; }
+  .product-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .product-detail {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .product.water { background: var(--water-bg); }
+  .product.water .product-emoji { background: var(--product-emoji-bg); border-color: var(--water-border); }
+  .product.retinol { background: var(--retinol-bg); }
+  .product.retinol .product-emoji { background: var(--retinol-emoji-bg); border-color: var(--retinol-border); }
+  .product.eye-serum { background: var(--eye-bg); }
+  .product.eye-serum .product-emoji { background: var(--eye-emoji-bg); border-color: var(--eye-border); }
+  .product.rest { background: var(--rest-bg); }
+  .product.rest .product-emoji { background: var(--rest-emoji-bg); border-color: var(--rest-border); }
+  .product.shampoo { background: var(--shampoo-bg); }
+  .product.shampoo .product-emoji { background: var(--shampoo-emoji-bg); border-color: var(--shampoo-border); }
+  .product.conditioner { background: var(--conditioner-bg); }
+  .product.conditioner .product-emoji { background: var(--conditioner-emoji-bg); border-color: var(--conditioner-border); }
+  .product.scalp-oil { background: var(--scalp-oil-bg); }
+  .product.scalp-oil .product-emoji { background: var(--scalp-oil-emoji-bg); border-color: var(--scalp-oil-border); }
+  .product.length-oil { background: var(--length-oil-bg); }
+  .product.length-oil .product-emoji { background: var(--length-oil-emoji-bg); border-color: var(--length-oil-border); }
+  .product.scalp-serum { background: var(--scalp-serum-bg); }
+  .product.scalp-serum .product-emoji { background: var(--scalp-serum-emoji-bg); border-color: var(--scalp-serum-border); }
+  .product.deep-mask { background: var(--deep-mask-bg); }
+  .product.deep-mask .product-emoji { background: var(--deep-mask-emoji-bg); border-color: var(--deep-mask-border); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 760px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .steps-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 10px var(--shadow);
+    border: 1px solid var(--card-border);
+    transition: background 0.4s ease;
+  }
+  .steps-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .steps-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .steps-card-icon.wash { background: var(--shampoo-bg); border: 1px solid var(--shampoo-border); }
+  .steps-card-icon.deep { background: var(--deep-mask-bg); border: 1px solid var(--deep-mask-border); }
+  .steps-card-icon.oil { background: var(--scalp-oil-bg); border: 1px solid var(--scalp-oil-border); }
+  .steps-card-icon.serum { background: var(--scalp-serum-bg); border: 1px solid var(--scalp-serum-border); }
+  .steps-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+  .steps-card-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    margin-left: 46px;
+  }
+  .steps-list {
+    list-style: none;
+    counter-reset: stepnum;
+    padding: 0;
+    margin: 0;
+  }
+  .steps-list li {
+    counter-increment: stepnum;
+    padding: 8px 0 8px 38px;
+    position: relative;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    line-height: 1.45;
+    border-bottom: 1px dashed var(--section-divider);
+  }
+  .steps-list li:last-child { border-bottom: none; }
+  .steps-list li::before {
+    content: counter(stepnum);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--step-num-bg);
+    color: var(--step-num-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .steps-list li .step-tip {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .footer-note {
+    margin-top: 28px;
+    padding: 18px 22px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px var(--shadow);
+    font-size: 0.88rem;
+    color: var(--note-text);
+    line-height: 1.65;
+    transition: background 0.4s ease;
+  }
+  .footer-note strong { color: var(--text-heading); }
+  .footer-note h3 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: var(--text-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .footer-note p + p { margin-top: 8px; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
+<div class="theme-indicator" id="theme-indicator"></div>
+
+<div class="container">
+
+  <header class="header">
+    <h1>Skincare & Haircare Routine</h1>
+    <p>Weekly schedule · auto day/night theme</p>
+  </header>
+
+  <div class="top-tabs">
+    <button class="top-tab-btn active" data-toptab="skincare">Skincare</button>
+    <button class="top-tab-btn" data-toptab="haircare">Haircare</button>
+  </div>
+
+  <!-- SKINCARE -->
+  <div class="top-tab-content active" id="skincare">
+    <p class="section-sub-header">Weeks 1–4 · Barrier reset, then introduce retinol</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="week12">Week 1–2</button>
+      <button class="tab-btn" data-tab="week34">Week 3–4</button>
+    </div>
+
+    <div class="tab-content active" id="week12">
+      <div class="tab-note">
+        <strong>Goal:</strong> Reset your barrier. Same simple routine every day — no actives yet. AM is just water, no foam cleanser.
+      </div>
+      <div class="days-grid" id="grid-week12"></div>
+    </div>
+
+    <div class="tab-content" id="week34">
+      <div class="tab-note">
+        <strong>Goal:</strong> Introduce retinol slowly — Monday and Thursday only. Eye serum on 3 non-retinol nights. Wednesday and Friday are rest nights. If anything stings or flakes for more than 2 days, drop a night and double up on moisturizer.
+      </div>
+      <div class="days-grid" id="grid-week34"></div>
+    </div>
+
+    <div class="footer-note">
+      <h3>As needed · Any week</h3>
+      <p><strong>🩹 Neutrogena Hydrocolloid Patches:</strong> stick on any whitehead overnight. Don't pop — let the patch do the work.</p>
+      <p><strong>☀️ Sunscreen reapplication:</strong> reapply mid-day if outdoors. Especially important on retinol days — UV makes dark marks worse.</p>
+
+      <div class="legend">
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--retinol-bg); border: 1px solid var(--retinol-border);"></span> Retinol night</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--eye-bg); border: 1px solid var(--eye-border);"></span> Eye serum night</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--rest-bg); border: 1px solid var(--rest-border);"></span> Rest night</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HAIRCARE -->
+  <div class="top-tab-content" id="haircare">
+    <p class="section-sub-header">Weekly schedule + step-by-step task order</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="hair-schedule">Weekly Schedule</button>
+      <button class="tab-btn" data-tab="hair-steps">Step-by-Step</button>
+    </div>
+
+    <div class="tab-content active" id="hair-schedule">
+      <div class="tab-note">
+        <strong>Goal:</strong> Calm intermittent flaking, restore moisture, and reduce breakage. Wash days are <strong>Monday, Wednesday, Saturday</strong>. Pre-wash oil treatment <strong>Sunday evening</strong>. Between-wash scalp serum <strong>Thursday</strong>. Always cool-rinse, scrunch dry with t-shirt or microfiber, detangle wet hair bottom-up with a wide-tooth comb.
+      </div>
+      <div class="days-grid" id="grid-haircare"></div>
+    </div>
+
+    <div class="tab-content" id="hair-steps">
+      <div class="tab-note">
+        <strong>How to use:</strong> Each card below is one type of session. Follow the steps top-to-bottom. The wash routine is your most-used one — Monday and Wednesday follow the standard version; Saturday adds the deep-condition variation.
+      </div>
+      <div class="steps-grid" id="grid-hair-steps"></div>
+    </div>
+
+    <div class="footer-note" style="margin-top: 22px;">
+      <h3>Rules that override the schedule</h3>
+      <p><strong>🌡️ If scalp ever feels tight, itchy, or extra-flaky:</strong> skip oils for a week and just keep the Dove serum + Garnier wash. Reintroduce oils gradually.</p>
+      <p><strong>💆 Massage technique:</strong> always fingertips, never nails. Small circles, 3–5 min for scalp. The massage matters as much as the product.</p>
+      <p><strong>🛏️ Overnight oiling is optional:</strong> if Sunday's pre-wash oil sits more than ~1 hour, use an old pillowcase or wrap with a soft cotton tee. Don't go more than one night.</p>
+      <p><strong>🌬️ Heat styling:</strong> always finish a blow dry on cool air to seal the cuticle — biggest single frizz reducer for wavy hair.</p>
+      <p><strong>📅 Patience window:</strong> give the routine 4–6 weeks before judging shedding or breakage changes. Hair works on a slow cycle.</p>
+
+      <div class="legend">
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--wash-bg); border: 1px solid var(--wash-border);"></span> Wash day</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--scalp-oil-bg); border: 1px solid var(--scalp-oil-border);"></span> Scalp oil / treatment</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--scalp-serum-bg); border: 1px solid var(--scalp-serum-border);"></span> Scalp serum</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--rest-bg); border: 1px solid var(--rest-border);"></span> Rest day</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ===== THEME HANDLING =====
+  let userOverride = null;
+
+  function getTimeBasedTheme() {
+    const hour = new Date().getHours();
+    return (hour >= 6 && hour < 18) ? 'day' : 'night';
+  }
+
+  function applyTheme(showIndicator = false) {
+    const theme = userOverride || getTimeBasedTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('theme-toggle').textContent = theme === 'day' ? '🌙' : '☀️';
+    document.getElementById('theme-toggle').setAttribute('title',
+      `Currently ${theme} mode. Click to switch.${userOverride ? ' (manual)' : ' (auto)'}`);
+    if (showIndicator) {
+      const ind = document.getElementById('theme-indicator');
+      ind.textContent = userOverride ? `${theme} mode · manual` : `${theme} mode · auto`;
+      ind.classList.add('show');
+      clearTimeout(window._themeTimer);
+      window._themeTimer = setTimeout(() => ind.classList.remove('show'), 2200);
+    }
+  }
+
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    userOverride = current === 'day' ? 'night' : 'day';
+    applyTheme(true);
+  });
+
+  setInterval(() => { if (!userOverride) applyTheme(); }, 60000);
+  applyTheme();
+
+  // ===== SKINCARE PRODUCTS =====
+  const water = { name: 'Water rinse', detail: 'lukewarm — no cleanser', emoji: '💧', class: 'water' };
+  const anua = { name: 'Anua Niacinamide 10 + TXA 4', detail: '2–3 drops on damp skin · brightening', emoji: '✨' };
+  const isntree = { name: 'Isntree HA Moist Cream', detail: 'pea-sized, full face · hydration', emoji: '💦' };
+  const spf = { name: 'Round Lab Birch Juice SPF50+', detail: 'two finger-lengths · sun protection', emoji: '☀️' };
+  const cleanser = { name: 'Soon Jung 5.5 Foam Cleanser', detail: 'lukewarm water, 30 sec · gentle foam', emoji: '🫧' };
+  const retinol = { name: 'Innisfree Retinol Cica Ampoule', detail: 'pea-sized, on dry skin · renewal', emoji: '🌿', class: 'retinol' };
+  const eye = { name: 'BoJ Revive Eye Serum (Ginseng + Retinal)', detail: 'eye area only — pat gently', emoji: '👁️', class: 'eye-serum' };
+  const restNight = { name: 'Rest night', detail: 'moisturizer only — let skin recover', emoji: '😴', class: 'rest' };
+
+  // ===== HAIRCARE PRODUCTS =====
+  const garnierShampoo = { name: 'Garnier Shampoo', detail: 'focus scalp · lather, rinse, cool finish', emoji: '🧴', class: 'shampoo' };
+  const garnierConditioner = { name: 'Garnier Conditioner', detail: 'mid-length to ends · 2–3 min · cool rinse', emoji: '💆', class: 'conditioner' };
+  const garnierMask = { name: 'Garnier Conditioner (deep)', detail: 'apply generously · shower cap · 10–15 min', emoji: '🛁', class: 'deep-mask' };
+  const doveSerumDamp = { name: 'Dove Scalp+ Therapy Serum', detail: '3–5 drops · massage into damp scalp', emoji: '🧪', class: 'scalp-serum' };
+  const doveSerumDry = { name: 'Dove Scalp+ Therapy Serum', detail: '3–5 drops · massage into dry scalp before bed', emoji: '🧪', class: 'scalp-serum' };
+  const mielleScalp = { name: 'Mielle Rosemary Mint Oil', detail: 'massage scalp 5 min · fingertips, small circles', emoji: '🌿', class: 'scalp-oil' };
+  const castorMix = { name: 'Soulflower Castor (1:1 mix)', detail: 'mix with coconut/almond · lengths & ends', emoji: '🫒', class: 'length-oil' };
+  const showerCap = { name: 'Shower cap · 45 min or overnight', detail: 'rinse out next morning before shampoo', emoji: '🎀', class: 'length-oil' };
+  const oilTip = { name: 'Mielle oil — pea-sized', detail: 'smooth onto damp ends only · skip scalp', emoji: '✨', class: 'length-oil' };
+  const restHair = { name: 'Rest day', detail: 'silk pillowcase · hands off, no products', emoji: '😴', class: 'rest' };
+
+  const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+  const week12_AM = [water, anua, isntree, spf];
+  const week12_PM = [cleanser, isntree];
+
+  function week34_PM(day) {
+    if (day === 'Monday' || day === 'Thursday') return [cleanser, retinol, isntree];
+    if (day === 'Tuesday' || day === 'Saturday' || day === 'Sunday') return [cleanser, eye, isntree];
+    return [cleanser, restNight, isntree];
+  }
+
+  function haircare_AM(day) {
+    if (day === 'Monday') return [garnierShampoo, garnierConditioner, doveSerumDamp, oilTip];
+    if (day === 'Wednesday') return [garnierShampoo, garnierConditioner, oilTip];
+    if (day === 'Saturday') return [garnierShampoo, garnierMask, doveSerumDamp, oilTip];
+    return [restHair];
+  }
+
+  function haircare_PM(day) {
+    if (day === 'Thursday') return [doveSerumDry];
+    if (day === 'Sunday') return [mielleScalp, castorMix, showerCap];
+    return [restHair];
+  }
+
+  function isWashDay(day) { return day === 'Monday' || day === 'Wednesday' || day === 'Saturday'; }
+
+  // ===== STEP-BY-STEP TASKS =====
+  const stepCards = [
+    {
+      icon: '🚿', iconClass: 'wash',
+      title: 'Standard wash day',
+      meta: 'Monday & Wednesday · morning · ~15 min',
+      steps: [
+        { text: 'Detangle dry hair with wide-tooth comb, bottom-up' },
+        { text: 'Wet hair thoroughly with lukewarm water', tip: 'not hot — strips moisture' },
+        { text: 'Apply quarter-sized Garnier shampoo to scalp only' },
+        { text: 'Massage scalp 30–60 sec with fingertips', tip: 'small circles, never nails' },
+        { text: 'Rinse — let suds run through lengths, don\'t scrub' },
+        { text: 'Squeeze excess water out of hair' },
+        { text: 'Apply Garnier conditioner mid-length to ends', tip: 'avoid scalp — weighs hair down' },
+        { text: 'Leave on 2–3 minutes' },
+        { text: 'Final rinse with cool water', tip: 'closes cuticle, biggest frizz fix' },
+        { text: 'Wrap in microfiber/cotton tee, scrunch don\'t rub' },
+        { text: 'Monday only: 3–5 drops Dove serum on damp scalp, massage in' },
+        { text: 'Pea-sized Mielle oil on damp ends only' },
+        { text: 'Air dry, or low heat with cool-air finish' }
+      ]
+    },
+    {
+      icon: '🛁', iconClass: 'deep',
+      title: 'Saturday deep-condition wash',
+      meta: 'Saturday · morning · ~25 min',
+      steps: [
+        { text: 'Same steps 1–6 as standard wash day' },
+        { text: 'Apply Garnier conditioner generously, mid-length to ends' },
+        { text: 'Cover with shower cap' },
+        { text: 'Leave 10–15 min', tip: 'great time for the rest of your shower routine' },
+        { text: 'Final rinse with cool water' },
+        { text: 'Wrap in microfiber/cotton tee, scrunch dry' },
+        { text: '3–5 drops Dove serum on damp scalp, massage in' },
+        { text: 'Pea-sized Mielle oil on damp ends only' },
+        { text: 'Air dry, or low heat with cool-air finish' }
+      ]
+    },
+    {
+      icon: '🌿', iconClass: 'oil',
+      title: 'Pre-wash oil treatment',
+      meta: 'Sunday evening · 45 min minimum or overnight',
+      steps: [
+        { text: 'Section dry hair into 2–4 parts, clip up' },
+        { text: 'Warm 1–2 tbsp Mielle Rosemary Mint between palms' },
+        { text: 'Apply to scalp section by section', tip: 'work it in along each part' },
+        { text: 'Massage scalp 5 min, fingertips, small circles' },
+        { text: 'In a bowl, mix Soulflower Castor 1:1 with coconut or almond oil' },
+        { text: 'Apply mix to lengths and ends only', tip: 'skip scalp — already oiled with Mielle' },
+        { text: 'Twist hair up loosely, cover with shower cap' },
+        { text: 'Leave 45 min minimum, or sleep in with cotton tee wrap' },
+        { text: 'Next morning: shampoo with extra care', tip: 'may need 2 lathers to fully remove oil' }
+      ]
+    },
+    {
+      icon: '🧪', iconClass: 'serum',
+      title: 'Between-wash scalp serum',
+      meta: 'Thursday evening · 5 min · leave overnight',
+      steps: [
+        { text: 'Part dry hair into 2–3 sections, exposing scalp' },
+        { text: 'Apply 3–5 drops of Dove serum directly along each part' },
+        { text: 'Massage in with fingertips for 2–3 min' },
+        { text: 'Leave on overnight — no rinsing needed' },
+        { text: 'Sleep on silk or satin pillowcase', tip: 'minimizes friction breakage' }
+      ]
+    }
+  ];
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function renderProduct(p) {
+    const cls = p.class ? ` ${p.class}` : '';
+    return `<div class="product${cls}">
+      <div class="product-emoji">${p.emoji}</div>
+      <div class="product-info">
+        <div class="product-name">${escapeHtml(p.name)}</div>
+        <div class="product-detail">${escapeHtml(p.detail)}</div>
+      </div>
+    </div>`;
+  }
+
+  function renderDayCard(day, am, pm, opts = {}) {
+    const washClass = opts.wash ? ' wash-day' : '';
+    return `<div class="day-card${washClass}">
+      <div class="day-name">${day}${opts.wash ? ' · wash' : ''}</div>
+      <div class="time-section">
+        <div class="time-label am"><span class="time-icon">☀</span> Morning</div>
+        <div class="products">${am.map(renderProduct).join('')}</div>
+      </div>
+      <div class="time-section">
+        <div class="time-label pm"><span class="time-icon">🌙</span> Evening</div>
+        <div class="products">${pm.map(renderProduct).join('')}</div>
+      </div>
+    </div>`;
+  }
+
+  function renderStepsCard(card) {
+    const stepsHtml = card.steps.map(s => {
+      const tip = s.tip ? `<span class="step-tip">${escapeHtml(s.tip)}</span>` : '';
+      return `<li>${escapeHtml(s.text)}${tip}</li>`;
+    }).join('');
+    return `<div class="steps-card">
+      <div class="steps-card-header">
+        <div class="steps-card-icon ${card.iconClass}">${card.icon}</div>
+        <div class="steps-card-title">${escapeHtml(card.title)}</div>
+      </div>
+      <div class="steps-card-meta">${escapeHtml(card.meta)}</div>
+      <ol class="steps-list">${stepsHtml}</ol>
+    </div>`;
+  }
+
+  document.getElementById('grid-week12').innerHTML = days.map(d => renderDayCard(d, week12_AM, week12_PM)).join('');
+  document.getElementById('grid-week34').innerHTML = days.map(d => renderDayCard(d, week12_AM, week34_PM(d))).join('');
+  document.getElementById('grid-haircare').innerHTML = days.map(d => renderDayCard(d, haircare_AM(d), haircare_PM(d), { wash: isWashDay(d) })).join('');
+  document.getElementById('grid-hair-steps').innerHTML = stepCards.map(renderStepsCard).join('');
+
+  document.querySelectorAll('.top-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.top-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.top-tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.toptab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Scope inner tabs to their parent so skincare and haircare tab groups don't conflict
+  document.querySelectorAll('.tabs').forEach(tabsContainer => {
+    const buttons = tabsContainer.querySelectorAll('.tab-btn');
+    const parent = tabsContainer.parentElement;
+    const contents = parent.querySelectorAll(':scope > .tab-content');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  });
+</script>
+</body>
+</html>
